@@ -11,14 +11,14 @@ samples <- c("fuji neg", "fuji pos", "golden neg", "pinklady neg", "pinklady pos
 
 for(sample in samples){
 
-	fnames <- list.files(paste0(path.root, sample), "CDF", full.names = TRUE)
+        fnames <- list.files(paste0(path.root, sample), "CDF", full.names = TRUE)
 
-	idout <- grep("blank|STD", fnames)
+        idout <- grep("blank|STD", fnames)
 
-	fnames1 <- fnames[-idout]
+        fnames1 <- fnames[-idout]
 
-	out <- runLC(fnames1, settings = FEMsettings$Synapt.QTOF.RP)
+        out <- runLC(fnames1, settings = FEMsettings$Synapt.QTOF.RP)
 
-	save(out, file = paste0(path.save, sample, ".RData"))
+        save(out, file = paste0(path.save, sample, ".RData"))
 
 }
