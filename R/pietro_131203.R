@@ -39,13 +39,11 @@ for(variety in varieties){
 	trait.bin <- trait[!(trait == "medium")]
 	trait.bin <- factor(trait.bin)
 
-
 	# compute the t-test
 	ps <- rep(0,ncol(DM.racc.bin))
 	for (i in 1:length(ps)){
 		ps[i] <- t.test(DM.racc.bin[trait.bin == "low",i], DM.racc.bin[trait.bin == "high",i], alternative = "two.sided")$p.value
 	}
-
 
 	# bonferroni correction (bonferroni is strict, BH less strict)
 	ps.adj <- p.adjust(ps, method = "BH")

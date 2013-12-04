@@ -59,3 +59,6 @@ for (i in 1:length(ps)){
 	ps[i] <- t.test(DMracc.bin[trait.bin == "medium",], DMracc.bin[trait.bin == "high",], alternative = "two.sided")$p.value
 }
 
+
+# make 
+
