@@ -1,3 +1,8 @@
+
+
+rm(list=ls())
+
+
 mode <- 'pos'
 variety <- 'pinklady'
 
@@ -50,21 +55,22 @@ for(mode in modes){
 		for (i in 1:length(ps)){
 			# add a 0.000001 because of the 0 values..
 			corr <- 0.000001
-			low <- DM.stor[trait.bin == "racc",i] + corr
-			high <- DM.stor[trait.bin == "cons",i] + corr
-
-			fc[i] <- mapply("/", high, low)
+			# let's compute it on the mean, since the sample names are differing.. (which is weird)
+			low <- mean(DM.stor[trait.bin == "racc",i]) + corr
+			high <- mean(DM.stor[trait.bin == "cons",i]) + corr
+			fc[i] <- high / low
 		}
 
 
 		ps.log10 <- -1 * log10(ps.adj)
 		fc.log2 <- log2(fc)
-		plot(fc.log2, ps.log10, main=exp)
+		plot(fc.log2, ps.log10, main=exp, xlim=c(-5,5), ylim=c(0, 50))
 
 		abline(v = 0.0)
 		#abline(h = 1.30103)
 
-		#plot biomarkers in green
+		#plot biomarkers with log10(p-value) > 0.5 in green
+		sel.biom <- sel.biom[which(ps.log10[sel.biom] > 5)]
 		points(fc.log2[sel.biom], ps.log10[sel.biom], col="green", pch=19)
 
 	}

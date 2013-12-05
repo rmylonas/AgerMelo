@@ -57,7 +57,7 @@ for(variety in varieties){
 	sel.biom <- selection(ps.biom)$studentt[[1]]
 
 	# create table of rt, mz and pcgroup and order it by rt
-	tableout <- cbind(rt[sel.biom], mz[sel.biom], pcgroup[sel.biom], colMeans(DM.racc.bin[,sel.biom]))
+	tableout <- cbind(rt[sel.biom], mz[sel.biom], pcgroup[sel.biom], colMeans(DM.racc.bin[,sel.biom]), sel.biom)
 	tableout <- tableout[order(rt[sel.biom]),]
 
 	# plot TIC (cut => rowsum)
