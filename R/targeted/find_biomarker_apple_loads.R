@@ -19,7 +19,7 @@ for(variety in varieties){
 	# select only racc
 	#DM.racc <- DM[which(DM.desc$campionamento == "racc"),]
 	# and only low and high
-	filter.DM <- which(DM.desc$campionamento == "racc" & DM.desc$anno == 2011 & DM.desc$tesi != 2)
+	filter.DM <- which(DM.desc$campionamento == "racc" & DM.desc$anno == 2012 & DM.desc$tesi != 2)
 
 	DM.racc.bin <- DM[filter.DM,]
 
@@ -40,11 +40,14 @@ for(variety in varieties){
 	for (i in 1:length(ps)){
 		ps[i] <- t.test(DM.racc.bin[trait.bin == 1,i], DM.racc.bin[trait.bin == 3,i], alternative = "two.sided")$p.value
 	}
-	ps.adj <- p.adjust(ps, method = "fdr")
-	selected <- which(ps.adj <= 0.05)
+
+	ps.adj <- p.adjust(ps, method = "BH")
+	selected.adj <- which(ps.adj <= 0.05)
+	selected <- which(ps <= 0.05)
 
 	print(exp)
-	print(sort(ps.adj))
+	print(colnames(DM.racc.bin)[selected.adj])
+	print(colnames(DM.racc.bin)[selected])
 
 	# random forest
 	forest <- randomForest(DM.racc.bin, trait.bin)
