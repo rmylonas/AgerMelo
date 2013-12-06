@@ -84,37 +84,38 @@ points(res$fuji, col="green")
 points(res$pinklady, col="blue")
 
 # select group of interest
-rt.range <- c(5.3, 5.6)
+rt.range <- c(3.0, rt.max)
 pg.pinklady <- unique(res$pinklady[res$pinklady[,1] >= rt.range[1] & res$pinklady[,1] <= rt.range[2],3])
 pg.golden <- unique(res$golden[res$golden[,1] >= rt.range[1] & res$golden[,1] <= rt.range[2],3])
 pg.fuji <- unique(res$fuji[res$fuji[,1] >= rt.range[1] & res$fuji[,1] <= rt.range[2],3])
+
 
 # get all rt and mz, hope no one will ever see this code..
 rt.pinklady <- vector()
 mz.pinklady <- vector()
 id.pinklady <- vector()
 for(pg in pg.pinklady){
-	rt.pinklady <- c(rt.pinklady, rt.h$pinklady[which(pcgroup.h$pinklady == pg)])
-	mz.pinklady <- c(mz.pinklady, mz.h$pinklady[which(pcgroup.h$pinklady == pg)])
-	id.pinklady <- c(id.pinklady, which(pcgroup.h$pinklady == pg))
+		rt.pinklady <- c(rt.pinklady, rt.h$pinklady[which(pcgroup.h$pinklady == pg)])
+		mz.pinklady <- c(mz.pinklady, mz.h$pinklady[which(pcgroup.h$pinklady == pg)])
+		id.pinklady <- c(id.pinklady, which(pcgroup.h$pinklady == pg))	
 }
 
 rt.golden <- vector()
 mz.golden <- vector()
 id.golden <- vector()
 for(pg in pg.golden){
-	rt.golden <- c(rt.golden, rt.h$golden[which(pcgroup.h$golden == pg)])
-	mz.golden <- c(mz.golden, mz.h$golden[which(pcgroup.h$golden == pg)])
-	id.golden <- c(id.golden, which(pcgroup.h$golden == pg))
+		rt.golden <- c(rt.golden, rt.h$golden[which(pcgroup.h$golden == pg)])
+		mz.golden <- c(mz.golden, mz.h$golden[which(pcgroup.h$golden == pg)])
+		id.golden <- c(id.golden, which(pcgroup.h$golden == pg))	
 }
 
 rt.fuji <- vector()
 mz.fuji <- vector()
 id.fuji <- vector()
 for(pg in pg.fuji){
-	rt.fuji <- c(rt.fuji, rt.h$fuji[which(pcgroup.h$fuji == pg)])
-	mz.fuji <- c(mz.fuji, mz.h$fuji[which(pcgroup.h$fuji == pg)])
-	id.fuji <- c(id.fuji, which(pcgroup.h$fuji == pg))
+		rt.fuji <- c(rt.fuji, rt.h$fuji[which(pcgroup.h$fuji == pg)])
+		mz.fuji <- c(mz.fuji, mz.h$fuji[which(pcgroup.h$fuji == pg)])
+		id.fuji <- c(id.fuji, which(pcgroup.h$fuji == pg))	
 }
 
 # and plot them
