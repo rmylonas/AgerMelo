@@ -38,10 +38,10 @@ my.markers <- c(5)
 	mypch[which(DM.desc$tesi == 2)] = 1
 	mypch[which(DM.desc$tesi == 3)] = 19
 
-	plot(rowSums(DM), col=mycol, pch=mypch)
+	#plot(rowSums(DM), col=mycol, pch=mypch)
 
 
-	DM <- DM[which(DM.desc$anno == 2011),]
+	DM <- DM[which(DM.desc$anno == 2012),]
 
 	#DM <- DM/rowSums(DM)
 
@@ -54,18 +54,19 @@ my.markers <- c(5)
 	trait.bin <- factor(DM.desc$campionamento)
 	DM.interest <- DM[,my.markers]
 
-	low.1 <- DM.interest[which(DM.desc$tesi == 1)]
-	medium.1 <- DM.interest[which(DM.desc$tesi == 2)]
-	high.1 <- DM.interest[which(DM.desc$tesi == 3)]
+	low <- DM.interest[which(DM.desc$tesi == 1)]
+	medium <- DM.interest[which(DM.desc$tesi == 2)]
+	high <- DM.interest[which(DM.desc$tesi == 3)]
 
-	t.test(low.1, high.1, alternative = "two.sided")$p.value
+	t.test(low, high, alternative = "two.sided")$p.value
 
 
-	ho <- data.frame(low.1, medium.1, high.1)
+	#ho <- data.frame(low, medium, high)
+	ho <- data.frame(low, high)
 	#my.labels <- c("coniferyl alcohol\nharvested", "coniferyl alcohol\nstored")
 	#colnames(ho) <- my.labels
 	#stripchart(ho, pch=1, vertical=TRUE, main="Golden: Luteolin-7-O-Glc", method = "jitter")
-	stripchart(ho, pch=1, vertical=TRUE, main="Fuji", method = "jitter")
+	stripchart(ho, pch=1, vertical=TRUE, main="Fuji 2012 - Chlorogenic acid", method = "jitter")
 
 
 
